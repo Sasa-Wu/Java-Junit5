@@ -1,5 +1,5 @@
 import BookingManager.dto.Room;
-import BookingManager.logic.FunctionTwo;
+import BookingManager.logic.SearchByDate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,27 +8,27 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FunctionTwoTest {
+public class SearchByDateTest {
+
+    SearchByDate searchByDate = new SearchByDate();
 
     // correct input information, one room is found
-    @DisplayName("Test FunctionTwo.searchByDate1()")
+    @DisplayName("Test searchByDate.searchByDate1()")
     @Test
     public void searchByDate1() {
-        FunctionTwo functionTwo = new FunctionTwo();
-        ArrayList<Room> result = functionTwo.searchByDate(20100115);
+        ArrayList<Room> result = searchByDate.searchByDate(20100115);
         assertTrue(result.size() == 1);
-        assertTrue(result.get(0).getOrderDateFrom()==20100115);
-        assertTrue(result.get(0).getOrderDateTo()==20100115);
+        assertTrue(result.get(0).getOrderDateFrom()==20100114);
+        assertTrue(result.get(0).getOrderDateTo()==20100114);
         assertEquals(result.get(0).getGuestName(),"Jeff");
         assertEquals(result.get(0).getRoomNumber(),"1166");
     }
 
     // No error in input information, and three rooms are found
-    @DisplayName("Test FunctionTwo.searchByDate2()")
+    @DisplayName("Test searchByDate.searchByDate2()")
     @Test
     public void searchByDate2() {
-        FunctionTwo functionTwo = new FunctionTwo();
-        ArrayList<Room> result = functionTwo.searchByDate(20100116);
+        ArrayList<Room> result = searchByDate.searchByDate(20100116);
         // 3 rooms has found, so the list's size is 3
         assertTrue(result.size() == 3);
         // room3
@@ -49,21 +49,19 @@ public class FunctionTwoTest {
     }
 
     // invalid queryDate is input, then no available room is found
-    @DisplayName("Test FunctionTwo.searchByDate3()")
+    @DisplayName("Test searchByDate.searchByDate3()")
     @Test
     public void searchByDate3() {
-        FunctionTwo functionTwo = new FunctionTwo();
-        ArrayList<Room> result = functionTwo.searchByDate(0);
+        ArrayList<Room> result = searchByDate.searchByDate(0);
         assertTrue(result.size() == 0);
     }
 
     // correct input information, no room is found
-    @DisplayName("Test FunctionTwo.searchByDate4()")
+    @DisplayName("Test searchByDate.searchByDate4()")
     @Test
     public void searchByDate4() {
-        FunctionTwo functionTwo = new FunctionTwo();
         // set the query date is 20170115
-        ArrayList<Room> result = functionTwo.searchByDate(20170115);
+        ArrayList<Room> result = searchByDate.searchByDate(20170115);
         assertTrue(result.size() == 0);
     }
 }

@@ -4,6 +4,7 @@ import BookingManager.dto.Room;
 
 import java.util.ArrayList;
 
+
 public class ConfigureRooms {
     public ArrayList<Room> configureRooms() {
 
@@ -17,12 +18,12 @@ public class ConfigureRooms {
         room1.setOrderDateTo(0);
 
         Room room2 = new Room();
-        room2.setAvailableDateFrom(20100114);
-        room2.setAvailableDateTo(20100114);
+        room2.setAvailableDateFrom(20100115);
+        room2.setAvailableDateTo(20100115);
         room2.setRoomNumber("1166");
         room2.setGuestName("Jeff");
-        room2.setOrderDateFrom(20100115);
-        room2.setOrderDateTo(20100115);
+        room2.setOrderDateFrom(20100114);
+        room2.setOrderDateTo(20100114);
 
         Room room3 = new Room();
         room3.setAvailableDateFrom(20100116);
@@ -49,24 +50,24 @@ public class ConfigureRooms {
         room5.setOrderDateTo(0);
 
         Room room6 = new Room();
-        room6.setAvailableDateFrom(20100116);
-        room6.setAvailableDateTo(20100116);
+        room6.setAvailableDateFrom(20130116);
+        room6.setAvailableDateTo(20130116);
         room6.setRoomNumber("1111");
         room6.setGuestName("Sasa");
         room6.setOrderDateFrom(20100111);
         room6.setOrderDateTo(20100111);
 
         Room room7 = new Room();
-        room7.setAvailableDateFrom(20100116);
-        room7.setAvailableDateTo(20100116);
+        room7.setAvailableDateFrom(20130116);
+        room7.setAvailableDateTo(20130116);
         room7.setRoomNumber("1100");
         room7.setGuestName("Sasa");
         room7.setOrderDateFrom(20100112);
         room7.setOrderDateTo(20100112);
 
         Room room8 = new Room();
-        room8.setAvailableDateFrom(20100116);
-        room8.setAvailableDateTo(20100116);
+        room8.setAvailableDateFrom(20130116);
+        room8.setAvailableDateTo(20130116);
         room8.setRoomNumber("11AA");
         room8.setGuestName("Sasa");
         room8.setOrderDateFrom(20100113);

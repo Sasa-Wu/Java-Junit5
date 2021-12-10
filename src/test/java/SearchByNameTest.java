@@ -1,5 +1,5 @@
 import BookingManager.dto.Room;
-import BookingManager.logic.FunctionThree;
+import BookingManager.logic.SearchByName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,28 +8,28 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FunctionThreeTest {
+public class SearchByNameTest {
 
     // correct input information, one booked room is found
-    @DisplayName("Test FunctionThree.searchByName1()")
+    @DisplayName("Test SearchByName.searchByName1()")
     @Test
     public void searchByName1() {
-        FunctionThree functionThree = new FunctionThree();
-        ArrayList<Room> result = functionThree.searchByName("Jeff");
+        SearchByName searchByName = new SearchByName();
+        ArrayList<Room> result = searchByName.searchByName("Jeff");
         // room2 is found
         assertTrue(result.size() == 1);
-        assertTrue(result.get(0).getOrderDateFrom()==20100115);
-        assertTrue(result.get(0).getOrderDateTo()==20100115);
+        assertTrue(result.get(0).getOrderDateFrom()==20100114);
+        assertTrue(result.get(0).getOrderDateTo()==20100114);
         assertEquals(result.get(0).getGuestName(),"Jeff");
         assertEquals(result.get(0).getRoomNumber(),"1166");
     }
 
     // correct input information, three booked rooms are found
-    @DisplayName("Test FunctionThree.searchByName2()")
+    @DisplayName("Test SearchByName.searchByName2()")
     @Test
     public void searchByName2() {
-        FunctionThree functionThree = new FunctionThree();
-        ArrayList<Room> result = functionThree.searchByName("Sasa");
+        SearchByName searchByName = new SearchByName();
+        ArrayList<Room> result = searchByName.searchByName("Sasa");
         System.out.println(result.size());
         assertTrue(result.size() == 3);
         // roo6
@@ -50,34 +50,34 @@ public class FunctionThreeTest {
     }
 
     // correct input information, one booked room is found
-    @DisplayName("Test FunctionThree.searchByName3()")
+    @DisplayName("Test SearchByName.searchByName3()")
     @Test
     public void searchByName3() {
-        FunctionThree functionThree = new FunctionThree();
+        SearchByName searchByName = new SearchByName();
         // no guest named Kafa has booked any room
-        ArrayList<Room> result = functionThree.searchByName("kafa");
+        ArrayList<Room> result = searchByName.searchByName("kafa");
         // no room is found
         assertTrue(result.size() == 0);
     }
 
     // invalid input name
-    @DisplayName("Test FunctionThree.searchByName4()")
+    @DisplayName("Test SearchByName.searchByName4()")
     @Test
     public void searchByName4() {
-        FunctionThree functionThree = new FunctionThree();
+        SearchByName searchByName = new SearchByName();
         // guestName is ""
-        ArrayList<Room> result = functionThree.searchByName("");
+        ArrayList<Room> result = searchByName.searchByName("");
         // no room is found
         assertTrue(result.size() == 0);
     }
 
     // invalid input name
-    @DisplayName("Test FunctionThree.searchByName5()")
+    @DisplayName("Test SearchByName.searchByName5()")
     @Test
     public void searchByName5() {
-        FunctionThree functionThree = new FunctionThree();
+        SearchByName searchByName = new SearchByName();
         // guestName is null
-        ArrayList<Room> result = functionThree.searchByName(null);
+        ArrayList<Room> result = searchByName.searchByName(null);
         assertTrue(result.size() == 0);
     }
 }

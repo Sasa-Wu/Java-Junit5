@@ -6,7 +6,7 @@ import BookingManager.dto.Room;
 
 import java.util.ArrayList;
 
-public class FunctionThree {
+public class SearchByName {
 
     public ArrayList<Room> searchByName(String guestName){
         ConfigureRooms configureRooms = new ConfigureRooms();

@@ -7,7 +7,7 @@ import BookingManager.dto.Room;
 
 import java.util.ArrayList;
 
-public class FunctionOne {
+public class SaveOrder {
     private int a = 0;
     public synchronized ArrayList saveOrder(Order order) {
 

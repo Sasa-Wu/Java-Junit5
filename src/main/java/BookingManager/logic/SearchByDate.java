@@ -6,7 +6,7 @@ import BookingManager.dto.Room;
 
 import java.util.ArrayList;
 
-public class FunctionTwo{
+public class SearchByDate {
 
     public ArrayList<Room> searchByDate(int queryDate){
         ConfigureRooms configureRooms = new ConfigureRooms();

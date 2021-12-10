@@ -1,6 +1,6 @@
 import BookingManager.dto.Order;
 import BookingManager.dto.Room;
-import BookingManager.logic.FunctionOne;
+import BookingManager.logic.SaveOrder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,19 +12,19 @@ import java.util.concurrent.FutureTask;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FunctionOneTest {
+public class SaveOrderTest {
 
     // There is a room available, and the guest has input his information correctly
     // The order(room1) can be saved
-    @DisplayName("Test FunctionImplementTest.saveOrder1()")
+    @DisplayName("Test SaveOrder.saveOrder1()")
     @Test
     public void testSaveOrder1() {
         Order order1 = new Order();
         order1.setDate(20100114);
         order1.setGuestName("Amy");
         order1.setRoomNumber("1177");
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         assertTrue(result.size() == 1);
         // The orderDates have set
         assertTrue(result.get(0).getOrderDateFrom()==20100114);
@@ -36,7 +36,7 @@ public class FunctionOneTest {
 
     // There is a room available, but the guest has input his information incorrectly
     // If the guest hasn't input his name(""), so the order(room1) can't be saved
-    @DisplayName("Test FunctionImplementTest.saveOrder2()")
+    @DisplayName("Test SaveOrder.saveOrder2()")
     @Test
     public void testSaveOrder2() {
         Order order1 = new Order();
@@ -44,15 +44,15 @@ public class FunctionOneTest {
         // GuestName is ""
         order1.setGuestName("");
         order1.setRoomNumber("1177");
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         // no room has booked
         assertTrue(result.size() == 0);
     }
 
     // There is a room available, but the hasn't guest input his information correctly
     // If the guest hasn't input his name(null), so the order(room1) can't be saved
-    @DisplayName("Test FunctionImplementTest.saveOrder3()")
+    @DisplayName("Test SaveOrder.saveOrder3()")
     @Test
     public void testSaveOrder3() {
         Order order1 = new Order();
@@ -60,30 +60,30 @@ public class FunctionOneTest {
         // GuestName is null
         order1.setGuestName(null);
         order1.setRoomNumber("1177");
-        FunctionOne  functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         // no room has booked
         assertTrue(result.size() == 0);
     }
 
     // There is a room available, but the guest input his information incorrectly
     // If the guest didn't input his orderDate, so the order(room1) can't be saved
-    @DisplayName("Test FunctionImplementTest.saveOrder4()")
+    @DisplayName("Test SaveOrder.saveOrder4()")
     @Test
     public void testSaveOrder4() {
         Order order1 = new Order();
         order1.setGuestName("Amy");
         order1.setRoomNumber("1177");
         order1.setDate(0);
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         assertTrue(result.size() == 0);
     }
 
 
     // There is a room available, but the guest input his information incorrectly
     // If the guest didn't input roomNumber(""), the order can't be saved
-    @DisplayName("Test FunctionImplementTest.saveOrder5()")
+    @DisplayName("Test SaveOrder.saveOrder5()")
     @Test
     public void testSaveOrder5() {
         Order order1 = new Order();
@@ -91,14 +91,14 @@ public class FunctionOneTest {
         order1.setGuestName("Amy");
         // roomNumber is ""
         order1.setRoomNumber("");
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         assertTrue(result.size() == 0);
     }
 
     // There is a room available, but the guest input his information incorrectly
     // If the guest hasn't input roomNumber(null), so the order can't be saved
-    @DisplayName("Test FunctionImplementTest.saveOrder6()")
+    @DisplayName("Test SaveOrder.saveOrder6()")
     @Test
     public void testSaveOrder6() {
         Order order1 = new Order();
@@ -106,15 +106,15 @@ public class FunctionOneTest {
         order1.setGuestName("Amy");
         // roomNumber is null
         order1.setRoomNumber(null);
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         // no room has booked
         assertTrue(result.size() == 0);
     }
 
     // If the guest input his information correctly, but there is no room available
     // The roomNumber doesn't match, so the order can't be saved
-    @DisplayName("Test FunctionImplementTest.saveOrder7()")
+    @DisplayName("Test SaveOrder.saveOrder7()")
     @Test
     public void testSaveOrder7() {
         Order order1 = new Order();
@@ -122,14 +122,14 @@ public class FunctionOneTest {
         order1.setGuestName("Amy");
         // set the order roomNumber as "1188"
         order1.setRoomNumber("1188");
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         // no room has booked
         assertTrue(result.size() == 0);
     }
 
     // The OrderDate < AvailableDateFrom, so no room has booked
-    @DisplayName("Test FunctionImplementTest.saveOrder8()")
+    @DisplayName("Test SaveOrder.saveOrder8()")
     @Test
     public void testSaveOrder8() {
         Order order1 = new Order();
@@ -138,14 +138,14 @@ public class FunctionOneTest {
         order1.setGuestName("Amy");
         // The guest would like to book room1
         order1.setRoomNumber("1177");
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         // room1 hasn't booked
         assertTrue(result.size() == 0);
     }
 
     // The Date > AvailableDateTo, no room has booked
-    @DisplayName("Test FunctionImplementTest.saveOrder9()")
+    @DisplayName("Test SaveOrder.saveOrder9()")
     @Test
     public void testSaveOrder9() {
         Order order1 = new Order();
@@ -153,14 +153,14 @@ public class FunctionOneTest {
         order1.setDate(20100115);
         order1.setGuestName("Amy");
         order1.setRoomNumber("1177");
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         // room1 hasn't booked
         assertTrue(result.size() == 0);
     }
 
     // The room(room9) with a name but without setting OrderDateFrom and OrderDateTo can't be booked
-    @DisplayName("Test FunctionImplementTest.saveOrder10()")
+    @DisplayName("Test SaveOrder.saveOrder10()")
     @Test
     public void testSaveOrder10() {
         Order order1 = new Order();
@@ -168,8 +168,8 @@ public class FunctionOneTest {
         order1.setGuestName("Amy");
         // The guest would like to order room9
         order1.setRoomNumber("9527");
-        FunctionOne functionOne = new FunctionOne();
-        ArrayList<Room> result = functionOne.saveOrder(order1);
+        SaveOrder saveOrder = new SaveOrder();
+        ArrayList<Room> result = saveOrder.saveOrder(order1);
         // room9 hasn't booked by Amy
         assertTrue(result.size() == 0);
     }
@@ -177,7 +177,7 @@ public class FunctionOneTest {
 
     /* Assume there are 4 booking orders for
      the same room at the same time. Only the one guest can book the room. */
-    @DisplayName("Test FunctionImplementTest.saveOrder11()")
+    @DisplayName("Test SaveOrder.saveOrder11()")
     @Test
     public void testSaveOrder11() throws Exception {
         Order order1 = new Order();
@@ -200,13 +200,13 @@ public class FunctionOneTest {
         order4.setGuestName("Amy4");
         order4.setRoomNumber("1177");
 
-        FunctionOne functionOne1 = new FunctionOne();
+        SaveOrder saveOrder1 = new SaveOrder();
 
         Callable<List> callable1 = new Callable<List>() {
             @Override
             public List<Room> call() throws Exception {
                 ArrayList<Room> result = new ArrayList<>();
-                result = functionOne1.saveOrder(order1);
+                result = saveOrder1.saveOrder(order1);
                 return result;
             }
         };
@@ -215,7 +215,7 @@ public class FunctionOneTest {
             @Override
             public List<Room> call() throws Exception {
                 ArrayList<Room> result = new ArrayList<>();
-                result = functionOne1.saveOrder(order2);
+                result = saveOrder1.saveOrder(order2);
                 return result;
             }
         };
@@ -224,7 +224,7 @@ public class FunctionOneTest {
             @Override
             public List<Room> call() throws Exception {
                 ArrayList<Room> result = new ArrayList<>();
-                result = functionOne1.saveOrder(order3);
+                result = saveOrder1.saveOrder(order3);
                 return result;
             }
         };
@@ -233,7 +233,7 @@ public class FunctionOneTest {
             @Override
             public List<Room> call() throws Exception {
                 ArrayList<Room> result = new ArrayList<>();
-                result = functionOne1.saveOrder(order4);
+                result = saveOrder1.saveOrder(order4);
                 return result;
             }
         };
@@ -268,7 +268,7 @@ public class FunctionOneTest {
         // To implement the thread safe function, I choose synchronized.
         // It's none-ReentrantLock. Although Amy1 is the first guest who requests the
         // the order, it doesn't mean she can book the room in the end.
-        // The only certain thing is thaht only one guest can book the room. So, orderCount should be 1
+        // The only certain thing is that only one guest can book the room. So, orderCount should be 1
         Integer orderCount = list1.size() + list2.size() + list3.size() + list4.size();
 
         System.out.println("OrderCount: "+orderCount);
